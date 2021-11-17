@@ -1,0 +1,23 @@
+/app/Console/Commands/SetupDevelopmentEnvironment.php
+/public/hot
+node_modules
+/public/storage
+/storage/*.key
+/storage/*.index
+/storage/framework/cache/*
+/vendor
+/resources/babel.babel
+.idea
+.env
+.env.backup
+.phpunit.result.cache
+.phpstorm.meta.php
+.vscode/
+_ide_helper.php
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+prettier.json
+info.txt
+3-3-2021  Aws New Key After Server Update/

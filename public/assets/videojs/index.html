@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video</title>
+  
+	<link href="video-5-js.min.css" rel="stylesheet">
+	<style>
+		
+		.vjs-default-skin .vjs-time-divider,
+		.vjs-default-skin .vjs-captions-button,
+		.vjs-default-skin .vjs-mute-control,
+		.vjs-default-skin .vjs-big-play-button,
+		.vjs-default-skin .vjs-volume-control,
+		.vjs-default-skin .vjs-volume-menu-button,
+		.vjs-default-skin .vjs-remaining-time,
+		.vjs-default-skin .vjs-play-control,
+		.vjs-default-skin .vjs-fullscreen-control {
+			display: none;  
+		}
+		
+		
+		
+	  /* .video-js .vjs-progress-holder .vjs-play-progress, .video-js .vjs-progress-holder .vjs-load-progress, .video-js .vjs-progress-holder .vjs-load-progress div{
+			height: 1em;
+		} */
+		
+		
+		
+	/* 	.vjs-default-skin { color: red; }
+		.vjs-default-skin .vjs-control-bar { background: green; }
+		.vjs-default-skin .vjs-play-progress { background: yellow; } */
+
+	</style>
+</head>
+<body>
+    <div class="player_wrapper">
+      <div class="player_container">
+        <video id="videojs-panorama-player" class="video-js vjs-default-skin" data-setup='{ "inactivityTimeout": 0 }' width="400" height="200" controls>
+          <source src="blood.mp4" type='video/mp4'>
+        </video>
+		
+		<div id="volume-box" class="video-js" style="margin-top: 20px; background-color:black;"></div>
+      </div>
+    </div>
+    <br><br>
+    <div class="player_wrapper">
+      <div class="player_container">
+        <video id="videojs-panorama-player2" class="video-js vjs-default-skin" width="400" height="200" controls>
+          <source src="blood.mp4" type='video/mp4'>
+        </video>
+      </div>
+    </div>
+    <br><br>
+    <div class="player_wrapper">
+      <div class="player_container">
+        <video id="videojs-panorama-player3" class="video-js vjs-default-skin" width="400" height="200" controls>
+          <source src="blood.mp4" type='video/mp4'>
+        </video>
+      </div>
+    </div>
+
+    <script>
+    (function(window, videojs) {
+	
+      const VolumeBar = videojs.getComponent('VolumeBar');
+      var seekbar  = videojs.getComponent('Seekbar');
+      console.log(seekbar);
+		  var box = document.getElementById('volume-box');
+		  var player = videojs('videojs-panorama-player');
+		  var volumeBar = new VolumeBar(player);
+		// player calls dispose on children, but this is not a child
+		  player.on('dispose', volumeBar.dispose.bind(volumeBar))
+		  box.appendChild(volumeBar.el());	
+		
+		
+      var players = document.querySelectorAll('.video-js');
+
+    	for (var i = 0, len = players.length; i < len; i++) {
+        var player = videojs(players[i], {techOrder: ["html5"]}, function () {
+          window.addEventListener("resize", function () {
+            var canvas = player.getChild('Canvas');
+            if(canvas) canvas.handleResize();
+          });
+        });
+    	}
+    }(window, videojs));
+  </script>
+  <script src="video-5.min.js"></script>
+</body>
+</html>
