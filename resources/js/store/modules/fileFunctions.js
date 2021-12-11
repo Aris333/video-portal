@@ -375,7 +375,11 @@ const actions = {
                                                                 if (response.data.folder_id == getters.currentFolder.unique_id){
                                                                         commit('ADD_NEW_ITEMS', response.data);
                                                                 }
+                                                                // console.log("before response");
+                                                                //     console.log("after response");
+                                                                //     console.log(response);
                                                                     resolve(response)
+                                                                //  resolve(response)
 
                                                                 }).catch(error => {
 
@@ -411,6 +415,7 @@ const actions = {
                         });
 
                 }
+
 
                 })
                 .catch(error => {
